@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>LSP prover</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">The Songbird Prover</h1>
+      <h2 class="project-tagline">
+        <strong>
+          A Separation Logic Prover which can <em>Automatically Synthesize
+          Inductive Lemmas</em> On-the-fly
+        </strong>
+      </h2>
+      <a href="https://docs.google.com/spreadsheets/" target="_blank" class="btn">View Experiment Details</a>
+      <a href="files/lsp-prover.zip" target="_blank" class="btn">Download Songbird prover</a>
+      <a href="files/benchmarks.zip" target="_blank" class="btn">Download Benchmarks</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        What is LSP?
+      </h1>
+
+      <p align="justify">
+        <strong>Songbird</strong> is a theorem prover for separation logic entailments.
+      </p>
+
+
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Input syntax
+      </h1>
+
+      <p>
+        The syntax of an input file which contain entailments is represented
+        below, where the entry point is the non-terminal <code>program</code>:
+      </p>
+
+      <pre>
+        <code>
+COMMENT         ::= '//' .*
+
+INTEGER         ::=  [0-9]+
+
+IDENTIFIER      ::=  [a-zA-Z_][a-zA-Z0-9_]*
+
+integer         ::=  INTEGER
+
+variable        ::=  IDENTIFIER
+
+field_name      ::=  IDENTIFIER
+
+singleton_name  ::=  IDENTIFIER
+
+inductive_name  ::=  IDENTIFIER
+
+type ::=
+  | 'int'
+  | singleton_name
+
+int_expression ::=
+  | integer
+  | variable
+  | '-' int_expression
+  | int_expression '+' int_expression
+  | int_expression '-' int_expression
+  | integer '\*' int_expression
+
+heap_expression ::=
+  | 'null'
+  | variable
+
+expression ::=
+  | int_expression
+  | heap_expression
+
+pure_formula ::=
+  | 'true'
+  | 'false'
+  | int_expression '==' int_expression
+  | int_expression '!=' int_expression
+  | int_expression '>' int_expression
+  | int_expression '>=' int_expression
+  | int_expression '<' int_expression
+  | int_expression '<=' int_expression
+  | heap_expression '==' heap_expression
+  | heap_expression '!=' heap_expression
+  | '!' pure_formula
+  | pure_formula '&' pure_formula
+  | pure_formula '|' pure_formula
+  | '(' 'exists' variable '.' pure_formula ')'
+  | '(' 'forall' variable '.' pure_formula ')'
+
+heap_formula ::=
+  | 'emp'
+  | variable '->' singleton_name '{' expression* '}'
+  | inductive_name '(' expression* ')'
+  | heap_formula * heap_formula
+
+formula ::=
+  | pure_formula
+  | heap_formula
+  | heap_formula '&' pure_formula
+  | '(' 'exists' variable '.' formula ')'
+
+singleton_defn ::=
+  | 'data' singleton_name '{' (type field_name)* '}'
+
+inductive_defn ::=
+  | 'pred' indutive_name '(' variable* ')' ':=' formula ('\/' formula)* ';'
+
+command ::= 'checkentail' formula '|-' formula ';'
+
+comment ::= COMMENT
+
+program ::= (singleton_defn  | inductive_defn  | command  | comment)*
+        </code>
+      </pre>
+
+
+      <footer class="site-footer">
+        <span class="site-footer-credits" align="right">This page was created using the <a href="https://github.com/jasonlong/cayman-theme">Cayman Theme</a>.</span>
+      </footer>
+
+    </section>
+
+  </body>
+</html>
