@@ -14,24 +14,107 @@
       <h1 class="project-name">The Songbird Prover</h1>
       <h2 class="project-tagline">
         <strong>
-          A Separation Logic Prover which can <em>Automatically Synthesize
-          Inductive Lemmas</em> On-the-fly
+          A Mutual Induction Separation Logic Prover
         </strong>
       </h2>
       <a href="https://docs.google.com/spreadsheets/" target="_blank" class="btn">View Experiment Details</a>
-      <a href="files/lsp-prover.zip" target="_blank" class="btn">Download Songbird prover</a>
+      <a href="files/songbird-prover.zip" target="_blank" class="btn">Download Songbird prover</a>
       <a href="files/benchmarks.zip" target="_blank" class="btn">Download Benchmarks</a>
     </section>
 
     <section class="main-content">
       <h1>
         <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-        What is LSP?
+        What is Songbird?
       </h1>
 
       <p align="justify">
-        <strong>Songbird</strong> is a theorem prover for separation logic entailments.
+        <strong>Songbird</strong>
+        is an automated inductive theorem prover for Separation Logic. It
+        employs mathematical induction to prove entailments involving general
+        inductive heap predicates. In particular, the proof technique of
+        Songbird is called mutual explicit induction, which inherits advantages
+        of both explicit induction and implicit induction. The induction
+        principle is designed based on a well-founded relation on Separation
+        Logic model, and has been directly implemented as inference rules of
+        Songbird. In addition, entailments derived during proof search can be
+        used as hypotheses to prove other derived entailments, and vice versa,
+        thanks to flexibility of the proposed well-founded relation.
+
       </p>
+
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        How good is Songbird?
+      </h1>
+
+      <p align="justify">
+        We have implemented <strong>Songbird</strong> in OCaml and evaluated
+        with two entailment benchmarks from SL-COMP 2014, a competition for
+        Separation Logic provers, as well as a hand-crafted benchmark. The
+        experiment result is encouraging as it shows the usefulness and
+        essentials of the mutual explicit induction proof technique in proving
+        separation logic entailments.
+      </p>
+
+      <ul>
+        <li> Summary of the first experiment on the existing benchmarks:</li>
+        &nbsp;
+        <iframe
+          src=""
+          width="100%" height="340">
+        </iframe>
+        &nbsp;
+
+        <li> Summary of the second experiment on the handcrafted benchmark:</li>
+        &nbsp;
+        <iframe
+          src=""
+          width="100%" height="300">
+        </iframe>
+
+        &nbsp;
+        <li> View  <a href="" target="_blank">details
+          of all the two experiments</a></li>
+
+      </ul>
+
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Download and usage
+      </h1>
+
+      <p>
+        Download links for the
+        <strong>Songbird</strong> prover and the benchmarks are presented below:
+      </p>
+
+      <ul>
+
+        <li> Download the <a href="files/songbird-prover.zip" target="_blank"><strong>Songbird</strong> prover</a> </li>
+        <li> Download the <a href="files/benchmarks.zip" target="_blank">benchmarks</a> </li>
+      </ul>
+
+      <p>
+        In this release, the binary of <strong>Songbird</strong> is named
+        <code>songbird</code>and is supposed to
+        run under a Linux environment, preferably Ubuntu-based operating
+        systems. <strong>Songbird</strong> is shipped with a binary file
+        <code>z3</code> of the <a href="https://github.com/Z3Prover/z3" target="_blank">Z3 SMT solver</a>.
+        Given that both the two binary files
+        <code>songbird</code> and <code>z3</code> are placed at
+        the current working directory <code>./</code>,
+        and <code>test.sb</code> is an input file containing a goal entailment
+        then the command to run
+        <strong>Songbird</strong> is:
+      </p>
+
+      <pre>
+        <code>
+./songbird test.sb
+        </code>
+      </pre>
+
 
 
       <h1>
