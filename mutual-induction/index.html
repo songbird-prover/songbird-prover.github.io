@@ -116,6 +116,83 @@
       </pre>
 
 
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Sample input and output
+      </h1>
+
+      <p>
+        A sample input of the <strong>Songbird</strong> prover is as below, where:
+        <ul>
+          <li>
+            <code>data</code>, and <code>pred</code>
+            are keywords corresponding to the declaration of
+            <em>singleton heap predicates</em> and
+            <em>inductive heap predicates</em>.
+          </li>
+
+          <li>
+            <code>node</code> is in identifier denoting the data sort.
+          </li>
+
+          <li>
+            <code>checkentail</code> is the keyword used to indicate the input
+            entailment.
+          </li>
+        </ul>
+      </p>
+
+      <h3>
+        Sample input: test.sb
+      </h3>
+
+      <pre>
+        <code>
+// This file name is: test.sb
+
+// The definition of a simple data structure containing 2 fields,
+// pointing to the previous and the next elements.
+
+data node {
+  node next;
+};
+
+// Several definitions of inductive heap predicates modelling the linked list
+
+pred ls(x,y) := x=y
+    \/ (exists u. x->node{u} * ls(u,y));
+
+pred ls_even(x,y) := x=y
+    \/ (exists u. x->node{u} * ls_odd(u,y));
+
+pred ls_odd(x,y) := x->node{y}
+    \/ (exists u. x->node{u} * ls_even(u,y));
+
+pred ls_all(x,y) := ls_even(x,y)
+    \/ ls_odd(x,y);
+
+// The goal entailment
+
+checkentail ls_all(x,x1) * ls_odd(x1,y) |- ls(x,y);
+        </code>
+      </pre>
+
+      <h3>
+        Output when running: ./songbird test.sb
+      </h3>
+
+      <pre>
+        <code>
+user@linux ~ $ ./songbird test.lsp
+
+[+] CheckEntail elseg(u,y) * ls_all(x,u) |- ls(x,y)
+
+ ==> Time: 0.0449190139771 (s)
+
+ ==> Result: Valid
+        </code>
+      </pre>
+
 
       <h1>
         <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
