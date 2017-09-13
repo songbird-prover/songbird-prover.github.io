@@ -36,7 +36,7 @@
         Songbird is called mutual explicit induction, which inherits advantages
         of both explicit induction and implicit induction. The induction
         principle is designed based on a well-founded relation on Separation
-        Logic model, and has been directly implemented as inference rules of
+        Logic models, and has been directly implemented as inference rules of
         Songbird. In addition, entailments derived during proof search can be
         used as hypotheses to prove other derived entailments, and vice versa,
         thanks to flexibility of the proposed well-founded relation.
@@ -52,7 +52,7 @@
         We have implemented <strong>Songbird</strong> in OCaml and evaluated
         with two entailment benchmarks from SL-COMP 2014, a competition for
         Separation Logic provers, as well as a hand-crafted benchmark. The
-        experiment result is encouraging as it shows the usefulness and
+        experimental result is encouraging as it shows the usefulness and
         essentials of the mutual explicit induction proof technique in proving
         separation logic entailments.
       </p>
@@ -162,18 +162,16 @@ data node {
 pred ls(x,y) := x=y
     \/ (exists u. x->node{u} * ls(u,y));
 
-pred ls_even(x,y) := x=y
-    \/ (exists u. x->node{u} * ls_odd(u,y));
+pred ls_even(x,y) := exists u. x->node{u} * ls_odd(u,y);
 
 pred ls_odd(x,y) := x->node{y}
     \/ (exists u. x->node{u} * ls_even(u,y));
 
-pred ls_all(x,y) := ls_even(x,y)
-    \/ ls_odd(x,y);
+pred ls_all(x,y) := ls_even(x,y) \/ ls_odd(x,y);
 
 // The goal entailment
 
-checkentail ls_all(x,x1) * ls_odd(x1,y) |- ls(x,y);
+checkentail ls_all(x,y) * ls_odd(y,z) |- ls(x,z);
         </code>
       </pre>
 
@@ -185,7 +183,7 @@ checkentail ls_all(x,x1) * ls_odd(x1,y) |- ls(x,y);
         <code>
 user@linux ~ $ ./songbird test.sb
 
-[+] CheckEntail elseg(u,y) * ls_all(x,u) |- ls(x,y)
+[+] CheckEntail ls_all(x,y) * ls_odd(y,z) |- ls(x,z)
 
  ==> Time: 0.0449190139771 (s)
 
