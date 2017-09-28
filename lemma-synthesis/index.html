@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>LSP prover</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">The LSP Prover</h1>
+      <h2 class="project-tagline">
+        <strong>
+          A Separation Logic Prover which can <em>Automatically Synthesize
+          Inductive Lemmas</em> On-the-fly
+        </strong>
+      </h2>
+      <a href="https://docs.google.com/spreadsheets/d/1frxsx6G29qKlSDVodsgQoQxJxvz6xM2YK_ZwDMBEgW8/edit?usp=sharing" target="_blank" class="btn">View Experiment Details</a>
+      <a href="files/lsp-prover.zip" target="_blank" class="btn">Download LSP prover</a>
+      <a href="files/benchmarks.zip" target="_blank" class="btn">Download Benchmarks</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        What is LSP?
+      </h1>
+
+      <p align="justify">
+        <strong>LSP</strong> is a <em>lemma-synthesis-based</em>
+        <em>inductive</em> theorem prover for separation logic entailments.
+        Essentially, it utilizes structural induction proof to deal with
+        inductive heap predicates in the entailments. In addition, it is able
+        to synthesize lemmas on-the-fly to assist in proving entailments.
+      </p>
+
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Why are lemmas needed?
+      </h1>
+
+
+      <p align="justify">
+        Although structural induction is well-known for its application in
+        reasoning recursive data structures, a sole use of this technique might
+        not be sufficient to prove separation logic entailments. This is because
+        the goal entailments might be too sophisticated to become good induction
+        hypotheses.
+      </p>
+
+      <p align="justify">
+        <strong>LSP</strong> can automatically synthesize lemmas to assist in
+        proving such sophisticated entailments. These lemmas are usually simple
+        entailments, which can be easily proved by induction. Via the lemma
+        application, inductive heap predicates in the entailments can be
+        reorganized, combined, or split to derive simpler sub-entailments, thus
+        making the proof search of these (sophisticated) entailments more
+        effective.
+      </p>
+
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        How are lemmas synthesized?
+      </h1>
+
+      <p align="justify">
+        The supporting lemmas for a given goal entailment can be synthesized by a three-step recipe:
+
+        <ul class="justify-list">
+          <li align="justify">
+            Firstly, <strong>LSP</strong> identifies necessary lemma templates.
+            They are simple entailments sharing similar heap (sub)structures
+            with the goal entailment, with all variables freshly named.
+          </li>
+
+          <li align="justify">
+            Secondly, <strong>LSP</strong> integrates unknown relations
+            representing desired constraints about the templates' variables
+            into the templates.
+          </li>
+
+          <li>
+            Finally, <strong>LSP</strong> proves the lemma templates by induction
+            to collect necessary assumption constraints about the unknown relations,
+            then solves these constraints to discover actual definitions of the
+            relations, thus discovers the desired lemmas.
+          </li>
+        </ul>
+      </p>
+
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        How good LSP is?
+      </h1>
+
+      <p align="justify">
+        We have implemented <strong>LSP</strong> in OCaml and run it on existing
+        entailments benchmarks, including <a href="https://github.com/mihasighi/smtcomp14-sl/tree/master/bench" target="_blank">benchmarks</a>
+        from the separation logic competition <a href="https://www.irif.fr/~sighirea/slcomp14/" target="_blank">SL-COMP</a>,
+        and also with a handcrafted benchmark. We have
+        compared the performance of <strong>LSP</strong> with other state-of-the-art
+        theorem provers in separation logic, including
+        <a href="http://www.fit.vutbr.cz/research/groups/verifit/tools/slide/" target="_blank"><strong>Slide</strong></a>,
+        <a href="http://loris-5.d2.comp.nus.edu.sg/sleek/" target="_blank"><strong>Sleek</strong></a>,
+        <a href="https://github.com/mihasighi/spen/" target="_blank"><strong>Spen</strong></a>,
+        <a href="http://www.cyclist-prover.org/" target="_blank"><strong>Cyclist</strong></a>, and
+        <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/" target="_blank"><strong>Songbird</strong></a>.
+        The experiments were conducted on a computer running Ubuntu 14.04 LTS,
+        with CPU Intel® Core™ i7-6700 (3.4Ghz) and RAM 16GB. The participating
+        provers were configured to prove each entailment within a
+        <strong>timeout of 180 seconds</strong>.
+      </p>
+
+      <p align="justify">
+        The result shows that
+        <strong>LSP</strong> can prove most of the valid entailments in the
+        existing benchmarks, and also performed well in the handcrafted
+        benchmark whose entailments are really sophisticated. Its result is also
+        better than all the state-of-the-art provers. Summary of the
+        experiments are presented below, where <strong>SLD</strong>,
+        <strong>SLK</strong>, <strong>SPN</strong>, <strong>CCL</strong>, and
+        <strong>SBD</strong> respectively stand for
+        <a href="http://www.fit.vutbr.cz/research/groups/verifit/tools/slide/" target="_blank"><strong>Slide</strong></a>,
+        <a href="http://loris-5.d2.comp.nus.edu.sg/sleek/" target="_blank"><strong>Sleek</strong></a>,
+        <a href="https://github.com/mihasighi/spen/" target="_blank"><strong>Spen</strong></a>,
+        <a href="http://www.cyclist-prover.org/" target="_blank"><strong>Cyclist</strong></a>, and
+        <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/" target="_blank"><strong>Songbird</strong></a>.
+        The numbers which are highlighted in <strong>bold</strong> are the best results
+        in each category. The spreadsheet containing all data of the two experiments
+        is available <a href="https://docs.google.com/spreadsheets/d/1frxsx6G29qKlSDVodsgQoQxJxvz6xM2YK_ZwDMBEgW8/edit?usp=sharing" target="_blank"><strong>here</strong></a> (redirecting to Google Sheets).
+      </p>
+
+      <ul>
+        <li> Summary of the first experiment on the existing benchmarks:</li>
+        &nbsp;
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/1frxsx6G29qKlSDVodsgQoQxJxvz6xM2YK_ZwDMBEgW8/pubhtml?gid=1326830302&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;range=B9:AG23"
+          width="100%" height="340">
+        </iframe>
+        &nbsp;
+
+        <li> Summary of the second experiment on the handcrafted benchmark:</li>
+        &nbsp;
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/1frxsx6G29qKlSDVodsgQoQxJxvz6xM2YK_ZwDMBEgW8/pubhtml?gid=1326830302&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false&amp;range=B30:X42"
+          width="100%" height="300">
+        </iframe>
+
+        &nbsp;
+        <li> View  <a href="https://docs.google.com/spreadsheets/d/1frxsx6G29qKlSDVodsgQoQxJxvz6xM2YK_ZwDMBEgW8/edit?usp=sharing" target="_blank">details
+        of all the two experiments</a></li>
+
+      </ul>
+
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Download and usage
+      </h1>
+
+      <p>
+        Download links for the
+        <strong>LSP</strong> prover and the benchmarks are presented below:
+      </p>
+
+      <ul>
+
+        <li> Download the <a href="files/lsp-prover.zip" target="_blank"><strong>LSP</strong> prover</a> </li>
+        <li> Download the <a href="files/benchmarks.zip" target="_blank">benchmarks</a> </li>
+      </ul>
+
+      <p>
+        In this release, the binary of <strong>LSP</strong> is named
+        <code>lsp</code>and is supposed to
+        run under a Linux environment, preferably Ubuntu-based operating
+        systems. <strong>LSP</strong> is shipped with a binary file
+        <code>z3</code> of the <a href="https://github.com/Z3Prover/z3" target="_blank">Z3 SMT solver</a>.
+        Given that both the two binary files
+        <code>lsp</code> and <code>z3</code> are placed at
+        the current working directory <code>./</code>,
+        and <code>test.lsp</code> is an input file containing a goal entailment
+        then the command to run
+        <strong>LSP</strong> is:
+      </p>
+
+      <pre>
+        <code>
+./lsp test.lsp
+        </code>
+      </pre>
+
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Sample input and output
+      </h1>
+
+      <p>
+        A sample input of the <strong>LSP</strong> prover is as below, where:
+        <ul>
+          <li>
+            <code>data</code>, and <code>pred</code>
+            are keywords corresponding to the declaration of
+            <em>singleton heap predicates</em> and
+            <em>inductive heap predicates</em>.
+          </li>
+
+          <li>
+            <code>node</code> is in identifier denoting the data sort.
+          </li>
+
+          <li>
+            <code>checkentail</code> is the keyword used to indicate the input
+            entailment.
+          </li>
+        </ul>
+      </p>
+
+      <h3>
+        Sample input: test.lsp
+      </h3>
+
+      <pre>
+        <code>
+// This file name is: test.lsp
+
+// The definition of a simple data structure containing 2 fields,
+// pointing to the previous and the next elements.
+
+data node {
+    node next;
+    node prev;
+};
+
+// The definition of an inductive heap predicate modelling the doubly linked list
+
+pred dll(hd,p,tl,n,l) := hd->node{n,p} & hd=tl & l=1
+                      \/ (exists x. hd->node{x,p} * dll(x,hd,tl,n,l-1));
+
+// The definition of another inductive heap predicate modelling the doubly linked list,
+// which is defined in a reversed direction
+
+pred dll_rev(hd,p,tl,n,l) := hd->node{n,p} & hd=tl & l=1
+                          \/ (exists x. dll_rev(hd,p,x,tl,l-1) * tl->node{n,x});
+
+// The goal entailment
+
+checkentail dll_rev(x,y,u,v,n) * dll(v,u,z,t,200) & n>=100 |-
+                                    (exists u. dll(x,y,u,z,n+199) * z->node{t,u});
+        </code>
+      </pre>
+
+      <h3>
+        Output when running: ./lsp test.lsp
+      </h3>
+
+      <pre>
+        <code>
+user@linux ~ $ ./lsp test.lsp
+
+
+[+] CheckEntail dll(v,u,z,t,200) * dll_rev(x,y,u,v,n) & 100<=n |- (exists u_1. z->node{t,u_1} * dll(x,y,u_1,z,n+199))
+
+ ==> ALL LEMMAS SYNTHESIZED:
+
+  - Lemma lm_convert: infer_rhs_2: _dll_rev__entail__dll__1 (safe): dll_rev(hd_16,p_17,tl_18,n_19,l_20) |- dll(hd_16,p_17,tl_18,n_19,l_20)
+  - Lemma lm_convert: infer_convert (reverse): _dll__entail__dll_rev__2 (safe): dll(hd_16,p_17,tl_18,n_19,l_20) |- dll_rev(hd_16,p_17,tl_18,n_19,l_20)
+  - Lemma lm_split: infer_lhs: _dll__entail__dll_node__3 (safe): dll(fv_1,fv_2,fv_3,fv_4,fv_5) & 0<=fv_5-2 |- (exists fv_11. fv_3->node{fv_4,fv_11} * dll(fv_1,fv_2,fv_11,fv_3,fv_5-1))
+  - Lemma lm_combine: infer_lhs: _dll_dll__entail__dll__4 (safe): dll(fv_9,fv_8,fv_3,fv_4,fv_5) * dll(fv_6,fv_7,fv_8,fv_9,fv_10) |- dll(fv_6,fv_7,fv_3,fv_4,fv_10+fv_5)
+
+ ==> LEMMAS USED IN THE VALID PROOF:
+
+  - Lemma lm_combine: infer_lhs: _dll_dll__entail__dll__4 (safe): dll(fv_9,fv_8,fv_3,fv_4,fv_5) * dll(fv_6,fv_7,fv_8,fv_9,fv_10) |- dll(fv_6,fv_7,fv_3,fv_4,fv_10+fv_5)
+  - Lemma lm_split: infer_lhs: _dll__entail__dll_node__3 (safe): dll(fv_1,fv_2,fv_3,fv_4,fv_5) & 0<=fv_5-2 |- (exists fv_11. fv_3->node{fv_4,fv_11} * dll(fv_1,fv_2,fv_11,fv_3,fv_5-1))
+  - Lemma lm_convert: infer_rhs_2: _dll_rev__entail__dll__1 (safe): dll_rev(hd_16,p_17,tl_18,n_19,l_20) |- dll(hd_16,p_17,tl_18,n_19,l_20)
+
+ ==> LEMMA SYNTHESIS STATS:
+   - Number of lemmas inferred: 4
+       + Lemma-convert inferred: 2
+       + Lemma-split inferred: 1
+       + Lemma-combine inferred: 1
+   - Number of lemmas used: 3
+       + Lemma-convert used: 1
+       + Lemma-split used: 1
+       + Lemma-combine used: 1
+   - Number of times using lemmas: 3
+       + Lemma-convert using times: 1
+       + Lemma-split using times: 1
+       + Lemma-combine using times: 1
+   - Runtime (in seconds) to infer all lemmas: 51.6794800758
+       + Lemma-convert runtime: 20.9877829552
+       + Lemma-split runtime: 17.6030759811
+       + Lemma-combine runtime: 13.0886211395
+
+
+ ==> Time: 51.7247829437 (s)
+
+ ==> Result: Valid
+        </code>
+      </pre>
+
+      <h1>
+        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Input syntax
+      </h1>
+
+      <p>
+        The syntax of an input file which contain entailments is represented
+        below, where the entry point is the non-terminal <code>program</code>:
+      </p>
+
+      <pre>
+        <code>
+COMMENT         ::= '//' .*
+
+INTEGER         ::=  [0-9]+
+
+IDENTIFIER      ::=  [a-zA-Z_][a-zA-Z0-9_]*
+
+integer         ::=  INTEGER
+
+variable        ::=  IDENTIFIER
+
+field_name      ::=  IDENTIFIER
+
+singleton_name  ::=  IDENTIFIER
+
+inductive_name  ::=  IDENTIFIER
+
+type ::=
+  | 'int'
+  | singleton_name
+
+int_expression ::=
+  | integer
+  | variable
+  | '-' int_expression
+  | int_expression '+' int_expression
+  | int_expression '-' int_expression
+  | integer '\*' int_expression
+
+heap_expression ::=
+  | 'null'
+  | variable
+
+expression ::=
+  | int_expression
+  | heap_expression
+
+pure_formula ::=
+  | 'true'
+  | 'false'
+  | int_expression '==' int_expression
+  | int_expression '!=' int_expression
+  | int_expression '>' int_expression
+  | int_expression '>=' int_expression
+  | int_expression '<' int_expression
+  | int_expression '<=' int_expression
+  | heap_expression '==' heap_expression
+  | heap_expression '!=' heap_expression
+  | '!' pure_formula
+  | pure_formula '&' pure_formula
+  | pure_formula '|' pure_formula
+  | '(' 'exists' variable '.' pure_formula ')'
+  | '(' 'forall' variable '.' pure_formula ')'
+
+heap_formula ::=
+  | 'emp'
+  | variable '->' singleton_name '{' expression* '}'
+  | inductive_name '(' expression* ')'
+  | heap_formula * heap_formula
+
+formula ::=
+  | pure_formula
+  | heap_formula
+  | heap_formula '&' pure_formula
+  | '(' 'exists' variable '.' formula ')'
+
+singleton_defn ::=
+  | 'data' singleton_name '{' (type field_name)* '}'
+
+inductive_defn ::=
+  | 'pred' indutive_name '(' variable* ')' ':=' formula ('\/' formula)* ';'
+
+command ::= 'checkentail' formula '|-' formula ';'
+
+comment ::= COMMENT
+
+program ::= (singleton_defn  | inductive_defn  | command  | comment)*
+        </code>
+      </pre>
+
+
+      <footer class="site-footer">
+        <span class="site-footer-credits" align="right">This page was created using the <a href="https://github.com/jasonlong/cayman-theme">Cayman Theme</a>.</span>
+      </footer>
+
+    </section>
+
+  </body>
+</html>

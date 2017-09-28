@@ -1,0 +1,25 @@
+Benchmarks of Separation Logic entailments used in the experiments
+of the prover LSP.
+
+They include 4 benchmarks, with all files converted into
+the input syntax format of LSP. The original benchmarks can
+be found in the corresponding URL of each benchmark.
+
+* slrd-lm:
+    The manually created entailment benchmark for LSP.
+    Syntax of the test cases can be referred to:
+    URL: https://lsp-prover.github.io
+
+* sll-entl:
+    The benchmark of entailments about the singly linked list
+    data structure, collected from the SL-COMP'14 competition.
+    URL: https://github.com/mihasighi/smtcomp14-sl/tree/master/bench/sll0a_entl
+
+* slrd-entl:
+    The benchmark of entailments about various inductive data structures,
+    collected from the SL-COMP'14 competition.
+    URL: https://github.com/mihasighi/smtcomp14-sl/tree/master/bench/slrd_entl
+
+* slrd-indt:
+    The benchmark of entailments from the mutual induction proof paper.
+    URL: http://loris-5.d2.comp.nus.edu.sg/songbird/
