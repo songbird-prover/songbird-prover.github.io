@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>LSP prover</title>
+    <title>SLS prover</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="css/normalize.css">
@@ -11,7 +11,7 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">The LSP Prover</h1>
+      <h1 class="project-name">SLS : Songbird + Lemma Synthesis</h1>
       <h2 class="project-tagline">
         <strong>
           A Separation Logic Prover which can <em>Automatically Synthesize
@@ -19,22 +19,25 @@
         </strong>
       </h2>
       <a href="https://docs.google.com/spreadsheets/d/1frxsx6G29qKlSDVodsgQoQxJxvz6xM2YK_ZwDMBEgW8/edit?usp=sharing" target="_blank" class="btn">View Experiment Details</a>
-      <a href="files/lsp-prover.zip" target="_blank" class="btn">Download LSP prover</a>
+      <a href="files/lsp-prover.zip" target="_blank" class="btn">Download SLS prover</a>
       <a href="files/benchmarks.zip" target="_blank" class="btn">Download Benchmarks</a>
     </section>
 
     <section class="main-content">
       <h1>
         <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-        What is LSP?
+        What is SLS?
       </h1>
 
       <p align="justify">
-        <strong>LSP</strong> is a <em>lemma-synthesis-based</em>
-        <em>inductive</em> theorem prover for separation logic entailments.
-        Essentially, it utilizes structural induction proof to deal with
-        inductive heap predicates in the entailments. In addition, it is able
-        to synthesize lemmas on-the-fly to assist in proving entailments.
+        <strong>SLS</strong> is a <em>lemma-synthesis-based</em>
+        <em>inductive</em> theorem prover for separation logic entailments. It
+        is developed on top of the induction-based theorem prover Songbird,
+        hence, the name <strong>SLS</strong> stands for <strong>S</strong>ongbird +
+        <strong >L</strong >emma <strong>S</strong>ynthesis. Essentially, <strong>SLS</strong>
+        utilizes structural induction proof to deal with inductive heap
+        predicates in the entailments. In addition, it is able to synthesize
+        lemmas on-the-fly to assist in proving entailments.
       </p>
 
       <h1>
@@ -52,7 +55,7 @@
       </p>
 
       <p align="justify">
-        <strong>LSP</strong> can automatically synthesize lemmas to assist in
+        <strong>SLS</strong> can automatically synthesize lemmas to assist in
         proving such sophisticated entailments. These lemmas are usually simple
         entailments, which can be easily proved by induction. Via the lemma
         application, inductive heap predicates in the entailments can be
@@ -71,19 +74,19 @@
 
         <ul class="justify-list">
           <li align="justify">
-            Firstly, <strong>LSP</strong> identifies necessary lemma templates.
+            Firstly, <strong>SLS</strong> identifies necessary lemma templates.
             They are simple entailments sharing similar heap (sub)structures
             with the goal entailment, with all variables freshly named.
           </li>
 
           <li align="justify">
-            Secondly, <strong>LSP</strong> integrates unknown relations
+            Secondly, <strong>SLS</strong> integrates unknown relations
             representing desired constraints about the templates' variables
             into the templates.
           </li>
 
           <li>
-            Finally, <strong>LSP</strong> proves the lemma templates by induction
+            Finally, <strong>SLS</strong> proves the lemma templates by induction
             to collect necessary assumption constraints about the unknown relations,
             then solves these constraints to discover actual definitions of the
             relations, thus discovers the desired lemmas.
@@ -93,15 +96,15 @@
 
       <h1>
         <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-        How good LSP is?
+        How good SLS is?
       </h1>
 
       <p align="justify">
-        We have implemented <strong>LSP</strong> in OCaml and run it on existing
+        We have implemented <strong>SLS</strong> in OCaml and run it on existing
         entailments benchmarks, including <a href="https://github.com/mihasighi/smtcomp14-sl/tree/master/bench" target="_blank">benchmarks</a>
         from the separation logic competition <a href="https://www.irif.fr/~sighirea/slcomp14/" target="_blank">SL-COMP</a>,
         and also with a handcrafted benchmark. We have
-        compared the performance of <strong>LSP</strong> with other state-of-the-art
+        compared the performance of <strong>SLS</strong> with other state-of-the-art
         theorem provers in separation logic, including
         <a href="http://www.fit.vutbr.cz/research/groups/verifit/tools/slide/" target="_blank"><strong>Slide</strong></a>,
         <a href="http://loris-5.d2.comp.nus.edu.sg/sleek/" target="_blank"><strong>Sleek</strong></a>,
@@ -116,7 +119,7 @@
 
       <p align="justify">
         The result shows that
-        <strong>LSP</strong> can prove most of the valid entailments in the
+        <strong>SLS</strong> can prove most of the valid entailments in the
         existing benchmarks, and also performed well in the handcrafted
         benchmark whose entailments are really sophisticated. Its result is also
         better than all the state-of-the-art provers. Summary of the
@@ -162,32 +165,32 @@
 
       <p>
         Download links for the
-        <strong>LSP</strong> prover and the benchmarks are presented below:
+        <strong>SLS</strong> prover and the benchmarks are presented below:
       </p>
 
       <ul>
 
-        <li> Download the <a href="files/lsp-prover.zip" target="_blank"><strong>LSP</strong> prover</a> </li>
+        <li> Download the <a href="files/lsp-prover.zip" target="_blank"><strong>SLS</strong> prover</a> </li>
         <li> Download the <a href="files/benchmarks.zip" target="_blank">benchmarks</a> </li>
       </ul>
 
       <p>
-        In this release, the binary of <strong>LSP</strong> is named
+        In this release, the binary of <strong>SLS</strong> is named
         <code>lsp</code>and is supposed to
         run under a Linux environment, preferably Ubuntu-based operating
-        systems. <strong>LSP</strong> is shipped with a binary file
+        systems. <strong>SLS</strong> is shipped with a binary file
         <code>z3</code> of the <a href="https://github.com/Z3Prover/z3" target="_blank">Z3 SMT solver</a>.
         Given that both the two binary files
         <code>lsp</code> and <code>z3</code> are placed at
         the current working directory <code>./</code>,
-        and <code>test.lsp</code> is an input file containing a goal entailment
+        and <code>test.sb</code> is an input file containing a goal entailment
         then the command to run
-        <strong>LSP</strong> is:
+        <strong>SLS</strong> is:
       </p>
 
       <pre>
         <code>
-./lsp test.lsp
+./lsp test.sb
         </code>
       </pre>
 
@@ -197,7 +200,7 @@
       </h1>
 
       <p>
-        A sample input of the <strong>LSP</strong> prover is as below, where:
+        A sample input of the <strong>SLS</strong> prover is as below, where:
         <ul>
           <li>
             <code>data</code>, and <code>pred</code>
@@ -218,12 +221,12 @@
       </p>
 
       <h3>
-        Sample input: test.lsp
+        Sample input: test.sb
       </h3>
 
       <pre>
         <code>
-// This file name is: test.lsp
+// This file name is: test.sb
 
 // The definition of a simple data structure containing 2 fields,
 // pointing to the previous and the next elements.
@@ -252,12 +255,12 @@ checkentail dll_rev(x,y,u,v,n) * dll(v,u,z,t,200) & n>=100 |-
       </pre>
 
       <h3>
-        Output when running: ./lsp test.lsp
+        Output when running: ./lsp test.sb
       </h3>
 
       <pre>
         <code>
-user@linux ~ $ ./lsp test.lsp
+user@linux ~ $ ./lsp test.sb
 
 
 [+] CheckEntail dll(v,u,z,t,200) * dll_rev(x,y,u,v,n) & 100<=n |- (exists u_1. z->node{t,u_1} * dll(x,y,u_1,z,n+199))
