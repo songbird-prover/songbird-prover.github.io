@@ -31,14 +31,14 @@
       </h1>
 
       <p align="justify">
-        <strong>SLS</strong> is a <em>lemma-synthesis-based</em>
-        <em>inductive</em> theorem prover for separation logic entailments. It
-        is developed on top of the induction-based theorem prover Songbird,
-        hence, the name <strong>SLS</strong> stands for <strong>S</strong>ongbird +
-        <strong >L</strong >emma <strong>S</strong>ynthesis. Essentially, <strong>SLS</strong>
-        utilizes structural induction proof to deal with inductive heap
-        predicates in the entailments. In addition, it is able to synthesize
-        lemmas on-the-fly to assist in proving entailments.
+        <strong>SLS</strong> (<strong>S</strong>ongbird + <strong >L</strong >emma 
+        <strong>S</strong>ynthesis) is an automated <em>lemma-synthesis-based</em>
+        <em>inductive</em> theorem prover for separation logic entailments, built
+        on top of the inductive theorem prover 
+        <a href="../index.html" target="_blank">Songbird</a>. Essentially, 
+        <strong>SLS</strong> utilizes structural induction proof to deal with 
+        inductive heap predicates in the entailments. In addition, it is able to 
+        synthesize lemmas on-the-fly to assist in proving these entailments.
       </p>
 
       <h1>
@@ -47,7 +47,7 @@
 
 
       <p align="justify">
-        Although structural induction is well-known for its application in
+        Although structural induction is prominent for its application in
         reasoning recursive data structures, a sole use of this technique might
         not be sufficient to prove separation logic entailments. This is because
         the goal entailments might be too sophisticated to become good induction
@@ -57,7 +57,7 @@
       <p align="justify">
         <strong>SLS</strong> can automatically synthesize lemmas to assist in
         proving such sophisticated entailments. These lemmas are usually simple
-        entailments, which can be easily proved by induction. Via the lemma
+        entailments, which can be easily proved by induction. Via lemma
         application, inductive heap predicates in the entailments can be
         reorganized, combined, or split to derive simpler sub-entailments, thus
         making the proof search of these (sophisticated) entailments more
@@ -100,10 +100,10 @@
       </h1>
 
       <p align="justify">
-        We have implemented <strong>SLS</strong> in OCaml and run it on existing
+        We have implemented <strong>SLS</strong> in OCaml and evaluated it on existing
         entailments benchmarks, including <a href="https://github.com/mihasighi/smtcomp14-sl/tree/master/bench" target="_blank">benchmarks</a>
         from the separation logic competition <a href="https://www.irif.fr/~sighirea/slcomp14/" target="_blank">SL-COMP</a>,
-        and also with a handcrafted benchmark. We have
+        and also on a handcrafted benchmark. We have
         compared the performance of <strong>SLS</strong>
         with other state-of-the-art theorem provers in separation logic,
         including
@@ -111,7 +111,7 @@
         <a href="http://loris-5.d2.comp.nus.edu.sg/sleek/" target="_blank"><strong>Sleek</strong></a>,
         <a href="https://github.com/mihasighi/spen/" target="_blank"><strong>Spen</strong></a>,
         <a href="http://www.cyclist-prover.org/" target="_blank"><strong>Cyclist</strong></a>, and
-        <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/" target="_blank"><strong>SMI</strong></a>
+        <a href="../mutual-induction/index.html" target="_blank"><strong>SMI</strong></a>
         (a version of <strong>S</strong>ongbird supporting <strong>M</strong>utual
         <strong>I</strong>nduction proof).
         The experiments were conducted on a computer running Ubuntu 14.04 LTS,
