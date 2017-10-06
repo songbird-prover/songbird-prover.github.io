@@ -1,0 +1,13 @@
+Virtual Machine with the SLS prover and prerequisite software pre-installed.
+
+* Import the virtual machine.ova file into VirtualBox: 
+    https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html
+
+* Login information:
+    Username: songbird
+    Password: songbird
+    
+    After starting, the machine can be accessed via ssh through the port 6022
+      ssh -p 6022 songbird@localhost
+
+* Artifact is put at /home/songbird/popl18-artifact
