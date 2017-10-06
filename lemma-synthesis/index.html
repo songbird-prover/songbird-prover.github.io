@@ -18,27 +18,29 @@
           Inductive Lemmas</em> On-the-fly
         </strong>
       </h2>
-      <a href="https://docs.google.com/spreadsheets/d/1frxsx6G29qKlSDVodsgQoQxJxvz6xM2YK_ZwDMBEgW8/edit?usp=sharing"
-         target="_blank" class="btn">
-        View Experiment Details</a>
+      <a href="files/popl18-artifact.zip" target="_blank" class="btn">Download POPL'18 artifact</a>
       <a href="files/sls-prover.zip" target="_blank" class="btn">Download SLS prover</a>
-      <a href="files/benchmarks.zip" target="_blank" class="btn">Download Benchmarks</a>
-      <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/files/songbird-vm.ova" target="_blank" class="btn">Download Virtual Machine</a>
+      <a href="files/benchmarks.zip" target="_blank" class="btn">Download benchmarks</a>
     </section>
 
     <section class="main-content">
+      <p>
+        <a style="color:#FF0000">Note:</a>
+        For artifact evaluation of our accepted paper at POPL'18, please visit
+        section <a href="#popl18-artifact">POPL'18 Artifact</a>
+      </p>
       <h1>
         What is SLS?
       </h1>
 
       <p align="justify">
-        <strong>SLS</strong> (<strong>S</strong>ongbird + <strong >L</strong >emma 
+        <strong>SLS</strong> (<strong>S</strong>ongbird + <strong >L</strong >emma
         <strong>S</strong>ynthesis) is an automated <em>lemma-synthesis-based</em>
         <em>inductive</em> theorem prover for separation logic entailments, built
-        on top of the inductive theorem prover 
-        <a href="../index.html" target="_blank">Songbird</a>. Essentially, 
-        <strong>SLS</strong> utilizes structural induction proof to deal with 
-        inductive heap predicates in the entailments. In addition, it is able to 
+        on top of the inductive theorem prover
+        <a href="../index.html" target="_blank">Songbird</a>. Essentially,
+        <strong>SLS</strong> utilizes structural induction proof to deal with
+        inductive heap predicates in the entailments. In addition, it is able to
         synthesize lemmas on-the-fly to assist in proving these entailments.
       </p>
 
@@ -159,49 +161,60 @@
 
       </ul>
 
-      <h1>
-        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+      <h1 id="download">
         Download and usage
       </h1>
 
       <p>
-        Download links for the artifact, including the <strong>SLS</strong> prover, 
-        the benchmarks, and a virtual machine with <strong>SLS</strong>
-        and prerequisite software pre-installed, are presented below:
+        In this release, the binary file of the prover
+        <strong>SLS</strong> is named <code>sls</code> and is supposed to
+        run under a Linux environment (preferably Ubuntu-based).
+        The SMT solver
+        <a href="https://github.com/Z3Prover/z3" target="_blank">Z3 </a>
+        is also required and its binary file <code>z3</code>
+        should be placed under the same directory with <code>sls</code>.
+        Download links for the <strong>SLS</strong> prover and its benchmarks
+        are as below:
       </p>
 
       <ul>
 
         <li> Download the <a href="files/sls-prover.zip" target="_blank"><strong>SLS</strong> prover</a> </li>
         <li> Download the <a href="files/benchmarks.zip" target="_blank">benchmarks</a> </li>
-        <li> Download the <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/files/songbird-vm.ova" target="_blank">
-        virtual machine</a> (.ova file, about 741MB) and its <a href="files/README_vm">README</a> </li>
       </ul>
 
+
       <p>
-        In this release, the binary of <strong>SLS</strong> is named
-        <code>sls</code>and is supposed to
-        run under a Linux environment, preferably Ubuntu-based operating
-        systems. <strong>SLS</strong> is shipped with a binary file
-        <code>z3</code> of the <a href="https://github.com/Z3Prover/z3" target="_blank">Z3 SMT solver</a>.
-        Given that both the two binary files
+        A sample command to run <strong>SLS</strong> is
+        <code>./sls test.sb</code>,
+        given that both the two binary files
         <code>sls</code> and <code>z3</code> are placed at
         the current working directory <code>./</code>,
-        and <code>test.sb</code> is an input file containing a goal entailment
-        then the command to run
-        <strong>SLS</strong> is:
+        and <code>test.sb</code> is an input file containing a goal
+        entailment.<br/>
+
       </p>
 
-      <pre>
-        <code>
-./sls test.sb
-        </code>
-      </pre>
+      <h1 id="popl18-artifact">POPL'18 Artifact Evaluation</h1>
 
-      <h1>
-        <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-        Sample input and output
-      </h1>
+      <p>
+        We prepare an experimental artifact for our accepted paper at POPL'18.
+        There are two release options for this artifact: (1) a packaged zip file
+        which can be run on a Linux environment, preferably Ubuntu-based,
+        and (2) a Lubuntu virtual machine containing the <strong>SLS</strong>
+        prover and its benchmarks. Download links for these releases
+        are as below:
+      </p>
+
+      <ul>
+
+        <li> Download the <a href="files/popl18-artifact.zip" target="_blank">the packaged artifact</a> (zip file, MB).
+        </li>
+        <li> Download the <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/files/songbird-vm.ova" target="_blank">
+          Lubuntu virtual machine</a> (.ova file, about 741MB) and its <a href="files/README_vm">README</a> </li>
+      </ul>
+
+      <h1>Sample input and output</h1>
 
       <p>
         A sample input of the <strong>SLS</strong> prover is as below, where:
