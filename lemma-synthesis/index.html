@@ -26,7 +26,7 @@
     <section class="main-content">
       <p>
         <a style="color:#FF0000">Note:</a>
-        For artifact evaluation of our POPL'18 submission,
+        For the artifact evaluation of our POPL'18 submission,
         please visit section <a href="#popl18-artifact">POPL'18 Artifact</a>
       </p>
       <h1>
@@ -139,8 +139,7 @@
         The numbers which are highlighted in <strong>bold</strong> are the best results
         in each category. The spreadsheet containing all data of the two experiments
         is available <a href="https://docs.google.com/spreadsheets/d/1frxsx6G29qKlSDVodsgQoQxJxvz6xM2YK_ZwDMBEgW8/edit?usp=sharing" target="_blank">
-          <strong>here</strong>
-        </a> (redirecting to Google Sheets).
+          <strong>here</strong></a> (redirecting to Google Sheets).
       </p>
 
       <ul>
@@ -168,9 +167,9 @@
       <p>
         In this release, the binary file of the prover
         <strong>SLS</strong> is named <code>sls</code> and is supposed to
-        run under a Linux environment (preferably Ubuntu-based).
+        run under a 64-bit Linux environment (preferably Ubuntu-based).
         The SMT solver
-        <a href="https://github.com/Z3Prover/z3" target="_blank">Z3 </a>
+        <a href="https://github.com/Z3Prover/z3" target="_blank">Z3</a>
         is also required and its binary file <code>z3</code>
         should be placed under the same directory with <code>sls</code>.
         Download links for the <strong>SLS</strong> prover and its benchmarks
@@ -198,35 +197,41 @@
       <h1 id="popl18-artifact">POPL'18 Artifact Evaluation</h1>
 
       <p>
-        We prepare an experimental artifact for our accepted paper at POPL'18.
-        There are two release options for this artifact: (1) a packaged zip file
-        which can be run on a Linux environment, preferably Ubuntu-based,
-        and (2) a Lubuntu virtual machine containing the <strong>SLS</strong>
-        prover and its benchmarks. Download links for these releases
-        are as below:
+        We have prepared an experimental artifact for our accepted paper at POPL'18.
+        There are two release options for this artifact: 
       </p>
-
-      <ul>
-
-        <li> Download the <a href="files/popl-18.zip" target="_blank">packaged artifact</a> (zip file, 26MB).
+      
+      <ol>
+        <li> A packaged zip file containing a <strong>SLS</strong> executable, 
+        which can be run on a 64-bit Linux environment, preferably Ubuntu-based, 
+        and benchmarks.
+          <ul>
+            <li> Download the <a href="files/popl-18.zip" target="_blank">packaged artifact</a> (.zip file, about 9MB).
+            </li>
+            
+            <li> Instruction: Please unzip the package into a folder, named <code>popl-18</code>,
+            and see the <code>README</code> file, located at <code>popl-18/README</code>.
+            A convenient way to perform the experiment is to run the shell script <code>popl-18/run_sls.sh</code>.
+            </li>
+          </ul>
         </li>
-        <li> Download the <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/files/songbird-vm.ova" target="_blank">
-          Lubuntu virtual machine</a> (.ova file, about 741MB) and its <a href="files/README_vm">README</a> </li>
-      </ul>
 
-      <p>
-        For the <a href="files/popl-18.zip" target="_blank">packaged artifact release</a>,
-        please unzip and see the README file, located at <code>popl-18/README</code>.
-        A convenient way to perform the experiment is to run the shell script <code>popl-18/run_sls.sh</code>.
-      </p>
-
-      <p>
-        For the <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/files/songbird-vm.ova" target="_blank">virtual machine release</a>, please import it into a VirtualBox. The artifact is
-        pre-installed under the folder
-        <code>/home/songbird/popl18-artifact</code>. Please see also the
-        <code>README</code> file, located
-        <a href="files/README_vm">here</a>.
-      </p>
+        <li> A Ubuntu Server 16.04.3 LTS virtual machine containing the <strong>SLS</strong>
+        prover and its benchmarks.
+          <ul>
+            <li> Download the <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/files/songbird-vm.ova" target="_blank">
+            Ubuntu virtual machine</a> (.ova file, about 741MB).
+            </li>
+            
+            <li> Instruction: Please import the virtual machine into a VirtualBox as instructed 
+            <a href="https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html">here</a>
+            and see also the <code>README</code> file, located <a href="files/README_vm">here</a>.
+            The artifact is pre-installed under the folder <code>/home/songbird/popl18-artifact</code>
+            in the machine.
+            </li>
+          </ul>
+        </li>
+      </ol>
 
       <h1>Sample input and output</h1>
 
