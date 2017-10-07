@@ -7,7 +7,7 @@ Virtual Machine with the SLS prover and prerequisite software pre-installed.
     Username: songbird
     Password: songbird
     
-    After starting, the machine can be accessed via ssh through the port 6022
+    After starting, the machine can also be accessed via ssh through the port 6022
       ssh -p 6022 songbird@localhost
 
 * Artifact is put at /home/songbird/popl18-artifact
