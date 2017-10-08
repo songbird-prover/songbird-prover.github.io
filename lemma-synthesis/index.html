@@ -34,11 +34,11 @@
       </h1>
 
       <p align="justify">
-        <strong>SLS</strong> (<strong>S</strong>ongbird + <strong >L</strong >emma
-        <strong>S</strong>ynthesis) is an automated <em>lemma-synthesis-based</em>
-        <em>inductive</em> theorem prover for separation logic entailments, built
-        on top of the inductive theorem prover
-        <a href="../index.html" target="_blank">Songbird</a>. Essentially,
+        <strong>SLS</strong> is an automated <em>lemma-synthesis-based</em>
+        <em>inductive</em> theorem prover for separation logic entailments.
+        It is developed on top of the inductive theorem prover
+        <a href="../index.html" target="_blank">Songbird</a>, hence, the name <strong>SLS</strong> stands for <strong>S</strong>ongbird +
+        <strong >L</strong >emma <strong>S</strong>ynthesis. Essentially,
         <strong>SLS</strong> utilizes structural induction proof to deal with
         inductive heap predicates in the entailments. In addition, it is able to
         synthesize lemmas on-the-fly to assist in proving these entailments.
@@ -198,17 +198,17 @@
 
       <p>
         We have prepared an experimental artifact for our accepted paper at POPL'18.
-        There are two release options for this artifact: 
+        There are two release options for this artifact:
       </p>
-      
+
       <ol>
-        <li> A packaged zip file containing a <strong>SLS</strong> executable, 
-        which can be run on a 64-bit Linux environment, preferably Ubuntu-based, 
+        <li> A packaged zip file containing a <strong>SLS</strong> executable,
+        which can be run on a 64-bit Linux environment, preferably Ubuntu-based,
         and benchmarks.
           <ul>
             <li> Download the <a href="files/popl-18.zip" target="_blank">packaged artifact</a> (.zip file, about 9MB).
             </li>
-            
+
             <li> Instruction: Please unzip the package into a folder, named <code>popl-18</code>,
             and see the <code>README</code> file, located at <code>popl-18/README</code>.
             A convenient way to perform the experiment is to run the shell script <code>popl-18/run_sls.sh</code>.
@@ -222,8 +222,8 @@
             <li> Download the <a href="http://loris-5.d2.comp.nus.edu.sg/songbird/files/songbird-vm.ova" target="_blank">
             Ubuntu virtual machine</a> (.ova file, about 735MB).
             </li>
-            
-            <li> Instruction: Please import the virtual machine into a VirtualBox as instructed 
+
+            <li> Instruction: Please import the virtual machine into a VirtualBox as instructed
             <a href="https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html">here</a>
             and see also the <code>README</code> file, located <a href="files/README_vm">here</a>.
             The artifact is pre-installed under the folder <code>/home/songbird/popl18-artifact</code>
